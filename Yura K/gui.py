@@ -10,13 +10,56 @@ root = tk.Tk()
 root.title("Банк")
 root.geometry("400x400")
 
+# ===== АНИМАЦИИ =====
+root.attributes("-alpha", 0.0)
 
-# ===== ФУНКЦИИ =====
+def fade_in(step=0.1):
+    alpha = root.attributes("-alpha")
+    if alpha < 1:
+        alpha += step
+        root.attributes("-alpha", alpha)
+        root.after(15, fade_in)
 
 def clear_window():
     for widget in root.winfo_children():
         widget.destroy()
 
+def animate_switch(new_screen_func, step=0.1):
+    def fade_out():
+        alpha = root.attributes("-alpha")
+        if alpha > 0:
+            alpha -= step
+            root.attributes("-alpha", alpha)
+            root.after(10, fade_out)
+        else:
+            clear_window()
+            new_screen_func()
+            fade_in()
+    fade_out()
+
+# ===== ЭФФЕКТЫ КНОПОК =====
+def on_enter(e):
+    e.widget["background"] = "#d1e7dd"
+
+def on_leave(e):
+    e.widget["background"] = "SystemButtonFace"
+
+def create_button(text, command, bottom=False, danger=False):
+    btn = tk.Button(root, text=text, width=20, command=command)
+
+    if bottom:
+        btn.pack(side="bottom", pady=10)
+    else:
+        btn.pack(pady=5)
+
+    if danger:
+        btn.bind("<Enter>", lambda e: e.widget.config(background="#ff4d4d"))
+        btn.bind("<Leave>", lambda e: e.widget.config(background="SystemButtonFace"))
+    else:
+        btn.bind("<Enter>", on_enter)
+        btn.bind("<Leave>", on_leave)
+
+    return btn
 
 # ===== ГЛАВНОЕ МЕНЮ =====
 def main_menu():
@@ -24,10 +67,11 @@ def main_menu():
 
     tk.Label(root, text="БАНКОВСКАЯ СИСТЕМА", font=("Arial", 14)).pack(pady=20)
 
-    tk.Button(root, text="Клиенты", width=20, command=clients_menu).pack(pady=5)
-    tk.Button(root, text="Счета", width=20, command=accounts_menu).pack(pady=5)
-    tk.Button(root, text="Выход", width=20, command=root.quit).pack(pady=20)
+    create_button("Клиенты", lambda: animate_switch(clients_menu))
+    create_button("Счета", lambda: animate_switch(accounts_menu))
+    create_button("Транзакции", lambda: animate_switch(transactions_menu))
 
+    create_button("Выход", root.quit, bottom=True, danger=True)
 
 # ===== КЛИЕНТЫ =====
 def clients_menu():
@@ -58,11 +102,10 @@ def clients_menu():
         entry.delete(0, tk.END)
         update_list()
 
-    tk.Button(root, text="Добавить", command=add_client).pack(pady=5)
-    tk.Button(root, text="Назад", command=main_menu).pack(pady=5)
+    create_button("Добавить", add_client)
+    create_button("Назад", lambda: animate_switch(main_menu), bottom=True)
 
     update_list()
-
 
 # ===== СЧЕТА =====
 def accounts_menu():
@@ -106,11 +149,10 @@ def accounts_menu():
         except:
             messagebox.showerror("Ошибка", "Неверный ввод")
 
-    tk.Button(root, text="Создать счет", command=create_account).pack(pady=5)
-    tk.Button(root, text="Назад", command=main_menu).pack(pady=5)
+    create_button("Создать счет", create_account)
+    create_button("Назад", lambda: animate_switch(main_menu), bottom=True)
 
     update_list()
-
 
 # ===== ТРАНЗАКЦИИ =====
 def transactions_menu():
@@ -161,11 +203,11 @@ def transactions_menu():
         except:
             messagebox.showerror("Ошибка", "Неверный ввод")
 
-    tk.Button(root, text="Пополнить", command=deposit).pack(pady=5)
-    tk.Button(root, text="Снять", command=withdraw).pack(pady=5)
-    tk.Button(root, text="Назад", command=main_menu).pack(pady=10)
-
+    create_button("Пополнить", deposit)
+    create_button("Снять", withdraw)
+    create_button("Назад", lambda: animate_switch(main_menu), bottom=True)
 
 # ===== ЗАПУСК =====
 main_menu()
+fade_in()
 root.mainloop()
