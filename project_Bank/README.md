@@ -28,21 +28,20 @@
 - **Среда разработки:** PyCharm / VS Code
 
 ## 📁 Структура проекта
-
-bank_project/
-│
-├── database/ # Слой данных
-│ ├── schema.sql # SQL-схема БД (таблицы, индексы, данные)
-│ └── app.db # Файл БД (создается автоматически)
-│
-├── src/ # Исходный код
-│ ├── main.py # Точка входа, консольное меню
-│ ├── db.py # Подключение к БД, инициализация
-│ ├── services.py # Бизнес-логика (CRUD операции)
-│ └── reports.py # Отчеты и визуализация данных
-│
-├── docs/ # Документация
-│ └── er_diagram.png # ER-диаграмма базы данных
-│
-├── .gitignore # Игнорируемые файлы (app.db)
-└── README.md # Документация проекта
+- **bank_project/**
+  - `.gitignore`
+  - `README.md`
+  - **database/**
+    - `schema.sql`
+    - `insert_test_data.sql`
+    - `app.db`
+  - **src/**
+    - `__init__.py`
+    - `main.py`
+    - `db.py`
+    - `services.py`
+    - `reports.py`
+  - **docs/**
+    - `er_diagram.png`
+  - **queries/**
+    - `analytics.sql`
