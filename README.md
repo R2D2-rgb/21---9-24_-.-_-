@@ -29,30 +29,28 @@
 * Фильтрация кредитов с просрочкой.
 
 ##  Структура репозитория
-text
 21---9-24_-.-_-/
-│
-├── .gitignore
-├── README.md
-├── LICENSE                     (опционально, например MIT)
-│
-├── database/                   # SQL-скрипты и БД
-│   ├── schema.sql              # Создание таблиц (Clients, Accounts, Loans, Transactions)
-│   ├── insert_test_data.sql    # Тестовые данные
-│   └── app.db                  # Файл базы данных (НЕ добавлять в git, но папка оставлена для локального использования)
-│
-├── src/                        # Исходный код Python
-│   ├── __init__.py             # Делает папку модулем
-│   ├── main.py                 # Точка входа, консольное меню
-│   ├── db.py                   # Подключение к БД, инициализация
-│   ├── services.py             # Бизнес-логика (CRUD операции)
-│   └── reports.py              # Отчеты и аналитика
-│
-├── docs/                       # Документация
-│   └── er_diagram.png          # ER-диаграмма (скриншот или схема)
-│
-└── queries/                    # Дополнительные SQL-запросы (опционально)
-    └── analytics.sql           # Сложные аналитические запросы (например, финальный JOIN-отчет)
+|
++-- .gitignore
++-- README.md
+|
++-- database/
+| +-- schema.sql
+| +-- insert_test_data.sql
+| +-- app.db
+|
++-- src/
+| +-- init.py
+| +-- main.py
+| +-- db.py
+| +-- services.py
+| +-- reports.py
+|
++-- docs/
+| +-- er_diagram.png
+|
++-- queries/
++-- analytics.sql
 
 ##  Как запустить (Инструкция)
 1. Установите **sqliteviewer.app**.
