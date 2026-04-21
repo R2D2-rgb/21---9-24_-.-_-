@@ -29,28 +29,25 @@
 * Фильтрация кредитов с просрочкой.
 
 ##  Структура репозитория
-21---9-24_-.-_-/
-|
-+-- .gitignore
-+-- README.md
-|
-+-- database/
-+-- schema.sql
-+-- insert_test_data.sql
-+-- app.db
-|
-+-- src/
-+-- init.py
-+-- main.py
-+-- db.py
-+-- services.py
-+-- reports.py
-|
-+-- docs/
-+-- er_diagram.png
-|
-+-- queries/
-+-- analytics.sql
+## 📁 Структура репозитория
+
+- **21---9-24_-.-_-/**
+  - `.gitignore`
+  - `README.md`
+  - **database/**
+    - `schema.sql`
+    - `insert_test_data.sql`
+    - `app.db`
+  - **src/**
+    - `__init__.py`
+    - `main.py`
+    - `db.py`
+    - `services.py`
+    - `reports.py`
+  - **docs/**
+    - `er_diagram.png`
+  - **queries/**
+    - `analytics.sql`
 
 ##  Как запустить (Инструкция)
 1. Установите **sqliteviewer.app**.
