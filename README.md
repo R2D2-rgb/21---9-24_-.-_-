@@ -35,19 +35,19 @@
 +-- README.md
 |
 +-- database/
-| +-- schema.sql
-| +-- insert_test_data.sql
-| +-- app.db
++-- schema.sql
++-- insert_test_data.sql
++-- app.db
 |
 +-- src/
-| +-- init.py
-| +-- main.py
-| +-- db.py
-| +-- services.py
-| +-- reports.py
++-- init.py
++-- main.py
++-- db.py
++-- services.py
++-- reports.py
 |
 +-- docs/
-| +-- er_diagram.png
++-- er_diagram.png
 |
 +-- queries/
 +-- analytics.sql
